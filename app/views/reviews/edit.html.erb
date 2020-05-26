@@ -1,0 +1,13 @@
+<h1 align= "center">Edit Review for <%= link_to @review.item.name, "/items/#{@review.item.id}" %></h1>
+<center>
+  <%= form_tag "/reviews/#{@review.id}", method: :patch do |f| %>
+
+    <%= text_field_tag :title, "#{@review.title}" %>
+
+    <%= text_field_tag :content, "#{@review.content}" %>
+
+    <%= text_field_tag :rating, "#{@review.rating}"%>
+
+    <%= submit_tag 'Update Review' %>
+  <% end %>
+</center>

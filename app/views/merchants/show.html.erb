@@ -1,0 +1,20 @@
+<h1><%= link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
+<p class="address"><%= @merchant.address %></p>
+<p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
+
+<ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
+<ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
+<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete  if @merchant.no_orders?%>
+</ul>
+<section class = "merchant-stats">
+  <h2>Number of Items: <%=@merchant.item_count%></h2>
+  <% if @merchant.item_count > 0 %>
+    <h2>Average Price of Items: <%=number_to_currency( @merchant.average_item_price)%></h2>
+    <section class = "distinct-cities">
+      <h2>Cities that order these items:</h2>
+      <% @merchant.distinct_cities.each do |city| %>
+        <p><%= city %></p>
+      <% end %>
+    <% end %>
+  </section>
+</section>

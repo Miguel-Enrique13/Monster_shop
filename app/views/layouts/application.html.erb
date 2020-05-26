@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Monster Shop</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <nav class = "topnav">
+      <%= link_to "All Merchants", "/merchants"%>
+      <%= link_to "All Items", "/items"%>
+      <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+    </nav>
+    <% flash.each do |name, msg| %>
+      <div class= "<%=name%>-flash">
+        <p><%= msg %></p>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

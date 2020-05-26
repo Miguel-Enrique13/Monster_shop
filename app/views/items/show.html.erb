@@ -1,0 +1,58 @@
+<h1><%= link_to @item.name, "/items/#{@item.id}" %></h1>
+<p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
+<section align = "center" id = "average-rating">
+  <p>Average Rating: <%= @item.average_review %></p>
+</section>
+<center>
+  <section class = "item-show-grid">
+    <section class = "item-show-item">
+      <img src= <%= @item.image %>>
+    </section>
+    <section style="text-align:left" class = "item-show-item">
+      <p><%= @item.description %></p>
+      <p>Price: <%= number_to_currency(@item.price )%> </p>
+      <p>Inventory: <%= @item.inventory %> </p>
+      <% if @item.active? %>
+        <p style= "color:green">Active</p>
+      <% else %>
+        <p style= "color:red">Inactive</p>
+      <% end %>
+      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
+      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete if @item.no_orders?%></p>
+      <%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %>
+      <%= button_to "Add To Cart", "/cart/#{@item.id}", method: :post %>
+    </section>
+  </section>
+</center>
+<center>
+<section class = "review-stats">
+  <%if @item.reviews.empty? %>
+    <h3>This item has not yet been reviewed.</h3>
+  <% else %>
+    <section class = "top-three-reviews">
+      <h2>Top 3 Reviews</h2>
+      <% @item.sorted_reviews(3, :desc).each do |review| %>
+        <h3><%= "#{review.rating}-#{review.title}" %></h3>
+      <% end %>
+    </section>
+    <section class = "bottom-three-reviews">
+      <h2>Bottom 3 Reviews</h2>
+      <% @item.sorted_reviews(3, :asc).each do |review| %>
+        <h3><%= "#{review.rating}-#{review.title}" %></h3>
+      <% end %>
+    </section>
+  </section>
+  <section class = "list-reviews">
+    <h2>All Reviews</h2>
+    <% @item.reviews.each do |review| %>
+      <section id= 'review-<%=review.id%>'>
+        <%= review.title %>
+        <%= review.content %>
+        Rating: <%= review.rating %>/5
+        <%= link_to "Edit", "/reviews/#{review.id}/edit" %>
+        <%= link_to "Delete", "/reviews/#{review.id}", method: :delete %>
+      </section>
+    <% end %>
+  <% end %>
+</section>
+</center>
