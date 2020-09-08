@@ -19,7 +19,7 @@ This project requires Ruby 2.5.3.
     * `rails db:migrate`
     * `rails db:seed`
 * Run the test suite with `bundle exec rspec`. There should be 99 passing tests.
-* Run your development server with `rails s`. Visit [localhost:3000/merchants](https://localhost:3000/merchants) to see the app in action.
+* Run your development server with `rails s`. Visit [localhost:3000/merchants](http://localhost:3000/merchants) to see the app in action.
 
 ## Learning Goals
 
