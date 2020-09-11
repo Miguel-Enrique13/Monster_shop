@@ -66,4 +66,28 @@ RSpec.describe 'User Registration', type: :feature do
     expect(page).to have_content('Email already taken')
 
   end
+
+  it "Flash message when user registration improperly filled out" do
+    name = 'Andy'
+    address = '123 Street'
+    city = 'Pawnee'
+    state = 'Indiana'
+    zip = '123456'
+    email = 'andy@gmail.com'
+    password = 'password'
+
+    visit '/register'
+
+    fill_in :name, with: name
+    fill_in :address, with: address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :email, with: email
+    fill_in :password, with: password
+    fill_in :password_confirmation, with: password
+
+    click_on 'Register User'
+
+    expect(page).to have_content("Missing Information")
+  end
 end

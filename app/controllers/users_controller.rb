@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'You have been registered and are now logged in!'
       redirect_to '/profile'
     else
-      flash[:notice] = 'Email already taken'
+      flash[:notice] = 'Email already taken or Missing Information'
       redirect_to '/register'
     end
   end
