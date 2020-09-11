@@ -63,7 +63,7 @@ RSpec.describe 'User Registration', type: :feature do
 
     click_on 'Register User'
 
-    expect(page).to have_content('Email already taken')
+    expect(page).to have_content('Email has already been taken')
 
   end
 
@@ -88,6 +88,6 @@ RSpec.describe 'User Registration', type: :feature do
 
     click_on 'Register User'
 
-    expect(page).to have_content("Missing Information")
+    expect(page).to have_content("Zip can't be blank")
   end
 end

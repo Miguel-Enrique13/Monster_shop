@@ -8,12 +8,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
     if @user.save
       flash[:notice] = 'You have been registered and are now logged in!'
       redirect_to '/profile'
     else
-      flash[:notice] = 'Email already taken or Missing Information'
+      flash[:notice] = @user.errors.full_messages.to_sentence
       redirect_to '/register'
     end
   end
