@@ -14,6 +14,7 @@
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
       <%= link_to "Register", "/register" %>
+      <%= link_to "login", login_index_path %>
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">
