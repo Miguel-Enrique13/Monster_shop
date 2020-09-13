@@ -11,7 +11,7 @@ RSpec.describe 'User Registration', type: :feature do
     email = 'andy@gmail.com'
     password = 'password'
 
-    visit'/register'
+    visit '/register'
 
     expect(current_path).to eq('/register')
 
