@@ -1,11 +1,16 @@
 class SessionsController < ApplicationController
   def new
-
+    if current_user
+      flash[:notice] = 'You are already logged in'
+      redirect_to '/profile' if @current_user.default?
+      redirect_to '/merchant/dashboard' if @current_user.merchant?
+      redirect_to '/admin/dashboard' if @current_user.admin?
+    end
   end
 
   def create
     user = User.find_by(email: params[:email])
-    
+
     if user.nil? || !user.authenticate(params[:password])
       flash[:notice] = 'Incorrect Password or Email'
       redirect_to '/login'
