@@ -1,4 +1,6 @@
 class CartController < ApplicationController
+  before_action :admin_restriction
+
   def add_item
     item = Item.find(params[:item_id])
     cart.add_item(item.id.to_s)
@@ -20,5 +22,9 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  private
 
+  def admin_restriction
+    render file: '/public/404' if current_admin?
+  end
 end

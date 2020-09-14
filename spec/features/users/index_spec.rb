@@ -79,6 +79,87 @@ RSpec.describe 'Navigation bar', type: :feature do
     click_on("All Users")
     expect(current_path).to eq('/admin/users')
   end
+end
 
+describe 'As a visitor' do
+  it "I cant access '/admin' route" do
+    visit root_path
 
+    visit '/admin/dashboard'
+
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+
+  it "I can't access 'merchant' route" do
+    visit root_path
+
+    visit '/merchant/dashboard'
+
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+
+  it "I can't access '/profile' route" do
+    visit root_path
+
+    visit '/profile'
+
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+end
+
+describe 'As a default user' do
+  before :each do
+    user = User.create!(name: 'Bob', address: "567 Road", city: 'Los Angeles', state: 'California', zip: '678987', email: 'andy@gmail.com', password: 'password', password_confirmation: 'password' )
+
+    visit '/login'
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_on 'log in'
+  end
+
+  it "Cannot access merchant routes" do
+    visit '/merchant/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+
+  it "Cannot access Admin routes" do
+    visit '/admin/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+end
+
+describe 'As a merchant User' do
+  before :each do
+    user = User.create!(name: 'Bob', address: "567 Road", city: 'Los Angeles', state: 'California', zip: '678987', email: 'andy@gmail.com', password: 'password', password_confirmation: 'password', role: 1 )
+
+    visit '/login'
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_on 'log in'
+  end
+
+  it "Cannot access Admin routes" do
+    visit '/admin/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+end
+
+describe 'As a Admin User' do
+  before :each do
+    user = User.create!(name: 'Bob', address: "567 Road", city: 'Los Angeles', state: 'California', zip: '678987', email: 'andy@gmail.com', password: 'password', password_confirmation: 'password', role: 2 )
+
+    visit '/login'
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_on 'log in'
+  end
+  it "Cannot access merchant routes" do
+    visit '/merchant/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+
+  it "Cannot access cart routes" do
+    visit '/cart'
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
 end

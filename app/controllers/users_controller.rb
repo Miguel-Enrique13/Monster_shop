@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: :index
+
   def index
     @users = User.all
   end
@@ -21,5 +23,9 @@ class UsersController < ApplicationController
   private
   def user_params
     params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
+  end
+
+  def require_user
+    render file: '/public/404' if (current_user == nil)
   end
 end
