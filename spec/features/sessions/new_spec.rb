@@ -142,10 +142,4 @@ RSpec.describe "When I click Login" do
     expect(current_path).to eq('/admin/dashboard')
     expect(page).to have_content("You are already logged in")
   end
-
-
-
-
-
-
 end

@@ -29,4 +29,20 @@ RSpec.describe 'Navigation bar', type: :feature do
     click_on('login')
     expect(current_path).to eq(login_index_path)
   end
+
+  it "I see 'profile' and 'logout' on the nav bar when I log in as a general user" do
+    user = User.create!(name: 'Bob', address: "567 Road", city: 'Los Angeles', state: 'California', zip: '678987', email: 'andy@gmail.com', password: 'password', password_confirmation: 'password', role: 0 )
+
+    visit items_path
+
+    click_on 'login'
+
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+
+    click_on 'log in'
+
+    expect(page).to have_link('Profile')
+    expect(page).to have_link('Log out')
+  end
 end
