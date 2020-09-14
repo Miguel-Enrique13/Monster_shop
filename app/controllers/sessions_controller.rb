@@ -21,6 +21,12 @@ class SessionsController < ApplicationController
       redirect_to '/merchant/dashboard' if user.merchant?
       redirect_to '/admin/dashboard' if user.admin?
     end
+  end
 
+  def logout
+    session[:user_id] = []
+    session.delete(:cart)
+    flash[:notice] = "You have been logged out"
+    redirect_to root_path
   end
 end
