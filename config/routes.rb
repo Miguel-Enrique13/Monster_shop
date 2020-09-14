@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'items#index'
+  root to: 'welcome#index'
 
   resources :merchants
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     get '/users', to: 'dashboard#show_users'
   end
 
-
+  get '/', to: 'welcome#index'
 
   post "/cart/:item_id", to: "cart#add_item"
   get "/cart", to: "cart#show"
