@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: :index
+    get '/users', to: 'dashboard#show_users'
   end
 
 
@@ -34,12 +35,13 @@ Rails.application.routes.draw do
   delete "/cart/:item_id", to: "cart#remove_item"
 
 
-  get "/register", to: 'users#new'
+  get '/register', to: 'users#new'
   post '/register', to: 'users#create'
   get '/profile', to: 'users#index'
 
   get '/login', to: 'sessions#new', as: 'login_index'
   post '/login', to: 'sessions#create'
+  get '/log_out', to: 'sessions#logout'
 
-  get '/log_out', to: "sessions#logout"
+
 end
