@@ -14,7 +14,7 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-      <% if current_user  %>
+      <% if current_user %>
         <%= link_to('Profile', '/profile') if current_user.default? %>
         <%= link_to('Merchant', '/merchant/dashboard') if current_user.merchant? %>
         <%= link_to('Admin', '/admin/dashboard') if current_user.admin? %>

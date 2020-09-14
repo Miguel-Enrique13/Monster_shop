@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session[:user_id] = []
+    session[:user_id] = nil
     session.delete(:cart)
     flash[:notice] = "You have been logged out"
     redirect_to root_path
