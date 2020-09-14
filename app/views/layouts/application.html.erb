@@ -18,6 +18,7 @@
         <%= link_to('Profile', '/profile') if current_user.default? %>
         <%= link_to('Merchant', '/merchant/dashboard') if current_user.merchant? %>
         <%= link_to('Admin', '/admin/dashboard') if current_user.admin? %>
+        <%= link_to('All Users', '/admin/users') if current_user.admin? %>
         <%= link_to 'Log out', '/log_out'  %>
       <% else %>
         <%= link_to "Register", "/register" %>
