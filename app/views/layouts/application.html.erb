@@ -10,6 +10,7 @@
 
   <body>
     <nav class = "topnav">
+      <%= link_to 'Home', root_path %>
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
