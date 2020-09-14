@@ -120,7 +120,7 @@ RSpec.describe "When I click Login" do
     fill_in :password, with: user.password
 
     click_on 'log in'
-    click_on 'login'
+    visit '/login'
 
     expect(current_path).to eq('/merchant/dashboard')
     expect(page).to have_content("You are already logged in")
@@ -137,7 +137,7 @@ RSpec.describe "When I click Login" do
     fill_in :password, with: user.password
 
     click_on 'log in'
-    click_on 'login'
+    visit '/login'
 
     expect(current_path).to eq('/admin/dashboard')
     expect(page).to have_content("You are already logged in")
