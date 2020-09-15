@@ -13,6 +13,21 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_password
+
+  end
+
+  def update_password
+    current_user.attributes = user_params
+    if current_user.save
+      flash[:success] = "Password has been updated"
+      redirect_to '/profile'
+    else
+      flash[:notice] = "Error updating your password"
+      redirect_to '/profile/edit'
+    end
+  end
+
   def update
     current_user.attributes = user_params
     if current_user.save
