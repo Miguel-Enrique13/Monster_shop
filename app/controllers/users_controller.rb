@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = "Your information has been updated"
       redirect_to '/profile'
     else
-      flash[:notice] = "Error updating information"
+      flash[:notice] = current_user.errors.full_messages.to_sentence
       redirect_to '/profile/edit'
     end
   end
