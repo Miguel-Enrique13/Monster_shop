@@ -19,6 +19,13 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  def subtract
+    item = Item.find(params[:item_id])
+    cart.remove_item(item.id.to_s)
+    session[:cart].delete(params[:item_id]) if cart.items[item] == 0
+    redirect_to '/cart'
+  end
+
   def show
     @items = cart.items
   end
