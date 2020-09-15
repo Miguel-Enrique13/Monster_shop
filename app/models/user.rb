@@ -4,10 +4,9 @@ class User < ApplicationRecord
   validates_presence_of :city
   validates_presence_of :state
   validates_presence_of :zip
-  validates :email, uniqueness: true, presence: true
-  validates_presence_of :password, require: true
 
-  validates_confirmation_of :password
+  validates :email, uniqueness: true, presence: true
+  validates :password, presence: true, confirmation: true, allow_nil: true
 
   has_secure_password
 

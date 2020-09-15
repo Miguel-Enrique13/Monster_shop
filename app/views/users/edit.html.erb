@@ -1,6 +1,6 @@
 <h1 align= "center">Edit User</h1>
 <center>
-  <%= form_tag '/profile/edit', method: :post%>
+  <%= form_tag '/profile/edit', method: :patch%>
 
     <%= label_tag :name %>
     <%= text_field_tag :name, placeholder: @user.name %>

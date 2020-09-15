@@ -14,9 +14,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(current_user.id)
-    @user.update(user_params)
-    redirect_to '/profile'
+    current_user.attributes = user_params
+    if current_user.save
+      flash[:success] = "Your information has been updated"
+      redirect_to '/profile'
+    else
+      flash[:notice] = "Error updating information"
+      redirect_to '/profile/edit'
+    end
   end
 
   def create
