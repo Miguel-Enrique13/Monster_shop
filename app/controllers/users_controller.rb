@@ -2,11 +2,21 @@ class UsersController < ApplicationController
   before_action :require_user, only: :index
 
   def index
-    @users = User.all
+    @user = User.find(@current_user.id)
   end
 
   def new
 
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find(current_user.id)
+    @user.update(user_params)
+    redirect_to '/profile'
   end
 
   def create
