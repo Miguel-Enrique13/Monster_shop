@@ -70,6 +70,21 @@ RSpec.describe 'Cart show' do
         expect(page).to have_content("Inventory limit reached for #{@tire.name}")
 
       end
+
+      it "I can increase the quantity of my items up to inventory limit" do
+        visit '/cart'
+
+        within "#cart-item-#{@tire.id}" do
+          click_on "Add"
+          expect(page).to have_link('Subtract')
+          click_on "Subtract"
+          expect(page).to have_content('1')
+          expect(page).to have_content('$100')
+          click_on "Subtract"
+        end
+        expect(page).not_to have_content("#cart-item-#{@tire.id}")
+      end
+
     end
   end
   describe "When I haven't added anything to my cart" do
