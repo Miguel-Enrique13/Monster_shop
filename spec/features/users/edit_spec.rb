@@ -41,5 +41,13 @@ describe 'As a user' do
 
     expect(current_path).to eq('/profile')
 
+    expect(page).to have_content(name)
+    expect(page).to have_content(address)
+    expect(page).to have_content(city)
+    expect(page).to have_content(state)
+    expect(page).to have_content(zip)
+    expect(page).to have_content(email)
+    expect(page).to have_content("Your information has been updated")
+
   end
 end

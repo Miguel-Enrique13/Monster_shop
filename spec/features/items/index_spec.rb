@@ -19,7 +19,7 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_link(@tire.merchant.name)
       expect(page).to have_link(@pull_toy.name)
       expect(page).to have_link(@pull_toy.merchant.name)
-      expect(page).to have_link(@dog_bone.name)
+      expect(page).not_to have_link(@dog_bone.name)
       expect(page).to have_link(@dog_bone.merchant.name)
     end
 
@@ -47,15 +47,15 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_css("img[src*='#{@pull_toy.image}']")
       end
 
-      within "#item-#{@dog_bone.id}" do
-        expect(page).to have_link(@dog_bone.name)
-        expect(page).to have_content(@dog_bone.description)
-        expect(page).to have_content("Price: $#{@dog_bone.price}")
-        expect(page).to have_content("Inactive")
-        expect(page).to have_content("Inventory: #{@dog_bone.inventory}")
-        expect(page).to have_link(@brian.name)
-        expect(page).to have_css("img[src*='#{@dog_bone.image}']")
-      end
+      # within "#item-#{@dog_bone.id}" do
+      #   expect(page).to have_link(@dog_bone.name)
+      #   expect(page).to have_content(@dog_bone.description)
+      #   expect(page).to have_content("Price: $#{@dog_bone.price}")
+      #   expect(page).to have_content("Inactive")
+      #   expect(page).to have_content("Inventory: #{@dog_bone.inventory}")
+      #   expect(page).to have_link(@brian.name)
+      #   expect(page).to have_css("img[src*='#{@dog_bone.image}']")
+      # end
     end
 
     it "All item images are link" do

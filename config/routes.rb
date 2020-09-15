@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   post '/register', to: 'users#create'
   get '/profile', to: 'users#index'
   get '/profile/edit', to: 'users#edit'
-  post '/profile/edit', to: 'users#update'
+  patch '/profile/edit', to: 'users#update'
 
   get '/login', to: 'sessions#new', as: 'login_index'
   post '/login', to: 'sessions#create'
