@@ -8,6 +8,17 @@ class CartController < ApplicationController
     redirect_to "/items"
   end
 
+  def add
+    item = Item.find(params[:item_id])
+    if item.inventory >= cart.items[item]
+      cart.add_item(item.id.to_s)
+      flash[:success] = "#{item.name} was successfully added to your cart"
+    else
+      flash[:notice] = "Inventory limit reached for #{item.name}"
+    end
+    redirect_to '/cart'
+  end
+
   def show
     @items = cart.items
   end
