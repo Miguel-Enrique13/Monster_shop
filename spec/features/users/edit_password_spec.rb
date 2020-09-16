@@ -36,4 +36,19 @@ describe 'As a user' do
 
       expect(page).to have_content('You have been logged in')
   end
+
+  it "input the wrong password confirmation" do
+    visit '/profile'
+
+    expect(page).to have_link('Edit Password')
+
+    click_on 'Edit Password'
+
+    fill_in :password, with: "New_password"
+    fill_in :password_confirmation, with: "New_password1"
+
+    click_on("Update Password")
+
+    expect(page).to have_content("Error updating your password")
+  end
 end

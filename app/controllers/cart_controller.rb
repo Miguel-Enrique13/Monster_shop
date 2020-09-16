@@ -10,8 +10,7 @@ class CartController < ApplicationController
 
   def add
     item = Item.find(params[:item_id])
-    if item.inventory >= cart.items[item]
-      cart.add_item(item.id.to_s)
+    if cart.add_quantity(item)
       flash[:success] = "#{item.name} was successfully added to your cart"
     else
       flash[:notice] = "Inventory limit reached for #{item.name}"
