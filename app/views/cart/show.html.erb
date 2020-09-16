@@ -1,3 +1,9 @@
+<% unless current_user %>
+  <div class="error-flash", id="Checkout-flash">
+    <p>You must <%= link_to "Log in", '/login' %> or <%= link_to 'Register', '/register'%> in order to checkout</p>
+  </div>
+<% end  %>
+
 <h1>Cart</h1>
 
 <% if !@items.empty? %>
