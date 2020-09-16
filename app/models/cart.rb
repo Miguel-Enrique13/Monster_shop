@@ -4,6 +4,13 @@ class Cart
   def initialize(contents)
     @contents = contents
   end
+  def add_quantity(item)
+    if item.inventory >= self.items[item]
+      self.add_item(item.id.to_s)
+    else
+      false
+    end
+  end
 
   def add_item(item)
     @contents[item] = 0 if !@contents[item]

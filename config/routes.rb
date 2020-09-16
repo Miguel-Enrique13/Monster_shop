@@ -27,8 +27,6 @@ Rails.application.routes.draw do
     get '/users', to: 'dashboard#show_users'
   end
 
-  get '/', to: 'welcome#index'
-
   post "/cart/:item_id", to: "cart#add_item"
   get "/cart", to: "cart#show"
   post "/cart/:item_id/add", to: "cart#add"
