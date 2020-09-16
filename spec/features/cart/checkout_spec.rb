@@ -27,6 +27,15 @@ RSpec.describe 'Cart show' do
 
       expect(current_path).to eq("/orders/new")
     end
+
+    it "and I am not logged in, I am asked to register or log in before checking out" do
+      visit "/cart"
+
+      within('#Checkout-flash') do
+        expect(page).to have_link("Register")
+        expect(page).to have_link("Log in")
+      end
+    end
   end
 
   describe 'When I havent added items to my cart' do
