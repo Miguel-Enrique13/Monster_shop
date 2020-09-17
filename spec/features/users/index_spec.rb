@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Navigation bar', type: :feature do
-  it "I can home page, items, merchants, cart, login and register link" do
+  it "I can see home page, items, merchants, cart, login and register link" do
     visit root_path
 
     expect(page).to have_link('Home')
