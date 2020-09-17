@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 
   end
 
+  def orders
+     
+  end
+
   def edit
     @user = current_user
   end
