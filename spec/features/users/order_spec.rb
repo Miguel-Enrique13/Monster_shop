@@ -46,11 +46,9 @@ describe 'I checkout with a full cart' do
 
     visit('/profile/orders')
 
-    expect(page).to have_content(@bob.name)
-    expect(page).to have_content(@bob.address)
-    expect(page).to have_content(@bob.city)
-    expect(page).to have_content(@bob.state)
-    expect(page).to have_content(@bob.zip)
+    expect(page).to have_content(@bob.orders.first.created_at)
+    expect(page).to have_content(@bob.orders.first.updated_at)
+    expect(page).to have_content(@bob.orders.first.quantity)
     expect(page).to have_content(@bob.orders.first.grandtotal)
     expect(page).to have_content(@bob.orders.first.status)
     expect(page).to have_link("##{@bob.orders.first.id}")
