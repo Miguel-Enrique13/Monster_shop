@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def orders
-     
+
   end
 
   def edit
@@ -47,9 +47,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = 'You have been registered and are now logged in!'
+      session[:user_id] = @user.id
       redirect_to '/profile'
     else
-      flash[:notice] = @user.errors.full_messages.to_sentence
+      flash[:error] = @user.errors.full_messages.to_sentence
       redirect_to '/register'
     end
   end
