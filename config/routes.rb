@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/profile/edit_password', to: 'users#edit_password'
   patch '/profile/edit_password', to: 'users#update_password'
   get '/profile/orders', to: 'users#orders'
+  get '/profile/order/:order_id', to: 'users#show_order'
 
   get '/login', to: 'sessions#new', as: 'login_index'
   post '/login', to: 'sessions#create'
