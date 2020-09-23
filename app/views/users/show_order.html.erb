@@ -1,0 +1,60 @@
+<section class = "shipping-address">
+  <h1 align = "center">Shipping Info</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><p><%= @order.name %> </p></td>
+      <td><p><%= @order.address %> </p></td>
+      <td><p><%= @order.city %> </p></td>
+      <td><p><%= @order.state %> </p></td>
+      <td><p><%= @order.zip %> </p></td>
+      <td><p><%= @order.status %> </p></td>
+    </tr>
+  </table>
+</section>
+
+<h1 align = "center">Order #<%= @order.id %> Info</h1>
+
+<center>
+  <section class = "grid-container">
+      <% @order.item_orders.each do |item_order|%>
+      <section class = "grid-item" id= 'item-<%=item_order.id%>'>
+          <% item = @items.find { |item| item.id == item_order.item_id } %>
+          <p><%=link_to item.name, "/items/#{item.id}"%></p>
+          <p><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}"%></p>
+          <%= link_to image_tag(item.image), "/items/#{item.id}", id: "item-image-#{item.id}" %>
+          <p>Description: <%= item.description %></p>
+          <p>Price: <%= item_order.price %></p>
+          <p>Quantity: <%= item_order.quantity %></p>
+          <p>Subtotal: <%= item_order.subtotal %></p>
+      <% end %>
+
+          <div id = "total items">
+            <p>Order Status: <%= @order.status %></p>
+          </div>
+
+          <div id = "total items">
+            <p>Total Items: <%= @order.quantity %></p>
+          </div>
+
+          <div id="grandtotal">
+            <p>Total: <%=number_to_currency(@order.grandtotal)%></p>
+          </div>
+
+          <div id="datecreated">
+            <p> Order Created: <%= @order.created_at%></p>
+          </div>
+
+          <div id="dateupdated">
+            <p> Last Update: <%= @order.updated_at%></p>
+          </div>
+      </section>
+  </section>
+</center>

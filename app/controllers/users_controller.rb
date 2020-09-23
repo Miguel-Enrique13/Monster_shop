@@ -13,6 +13,11 @@ class UsersController < ApplicationController
 
   end
 
+  def show_order
+    @order = Order.find(params[:order_id])
+    @items = @order.items
+  end
+
   def edit
     @user = current_user
   end
